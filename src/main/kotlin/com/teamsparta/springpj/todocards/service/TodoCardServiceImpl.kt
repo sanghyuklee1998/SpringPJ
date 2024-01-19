@@ -2,6 +2,7 @@ package com.teamsparta.springpj.todocards.service
 
 import com.teamsparta.springpj.todocards.dtos.TodoCardDto
 import com.teamsparta.springpj.todocards.dtos.CreateTodoCardArguments
+import com.teamsparta.springpj.todocards.dtos.RetrieveTodoCardDto
 import com.teamsparta.springpj.todocards.dtos.UpdateTodoCardArguments
 import com.teamsparta.springpj.todocards.repository.TodoCardRepository
 import org.springframework.data.repository.findByIdOrNull
@@ -17,10 +18,10 @@ class TodoCardServiceImpl(
         return TodoCardDto.from(saveTodoCard)
     }
 
-    override fun findById(id: Long): TodoCardDto? {
+    override fun findById(id: Long): RetrieveTodoCardDto? {
         val foundTodoCard = todoCardRepository.findByIdOrNull(id)
 
-        return foundTodoCard?.let {TodoCardDto.from(it)}
+        return foundTodoCard?.let {RetrieveTodoCardDto.from(it)}
     }
 
     override fun findAll(): List<TodoCardDto> {

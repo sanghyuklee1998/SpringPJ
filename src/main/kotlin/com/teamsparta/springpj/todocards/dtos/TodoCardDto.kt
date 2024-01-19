@@ -9,7 +9,7 @@ data class TodoCardDto(
     val content: String,
     val nickname: String,
     val isCompleted: Boolean,
-    val createdAt: ZonedDateTime = ZonedDateTime.now()
+    val createdAt: ZonedDateTime
 ) {
     companion object {
         fun from(todoCard: TodoCard): TodoCardDto {

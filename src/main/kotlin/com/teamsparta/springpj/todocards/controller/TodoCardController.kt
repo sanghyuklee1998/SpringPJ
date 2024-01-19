@@ -2,6 +2,7 @@ package com.teamsparta.springpj.todocards.controller
 
 import com.teamsparta.springpj.todocards.dtos.TodoCardDto
 import com.teamsparta.springpj.todocards.dtos.CreateTodoCardArguments
+import com.teamsparta.springpj.todocards.dtos.RetrieveTodoCardDto
 import com.teamsparta.springpj.todocards.dtos.UpdateTodoCardArguments
 import com.teamsparta.springpj.todocards.service.TodoCardService
 import org.springframework.http.HttpStatus
@@ -45,7 +46,7 @@ class TodoCardController(
     @GetMapping("/{todoCardId}")
     fun findTodoCard(
         @PathVariable todoCardId: Long
-    ): ResponseEntity<TodoCardDto?> {
+    ): ResponseEntity<RetrieveTodoCardDto?> {
         val todoCard = todoCardService.findById(todoCardId)
 
         return ResponseEntity
