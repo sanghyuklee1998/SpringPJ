@@ -8,6 +8,7 @@ data class TodoCardDto(
     val title: String,
     val content: String,
     val nickname: String,
+    val isCompleted: Boolean,
     val createdAt: ZonedDateTime = ZonedDateTime.now()
 ) {
     companion object {
@@ -17,6 +18,7 @@ data class TodoCardDto(
                 title = todoCard.title,
                 content = todoCard.content,
                 nickname = todoCard.nickname,
+                isCompleted = todoCard.isCompleted,
                 createdAt = todoCard.createdAt
             )
         }
