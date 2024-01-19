@@ -4,6 +4,7 @@ import com.teamsparta.springpj.todocards.model.TodoCard
 import jakarta.persistence.*
 
 @Entity
+@Table(name = "comment")
 class Reply(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

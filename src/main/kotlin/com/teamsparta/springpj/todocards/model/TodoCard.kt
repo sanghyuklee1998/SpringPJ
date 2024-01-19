@@ -1,16 +1,19 @@
 package com.teamsparta.springpj.todocards.model
 
 import com.teamsparta.springpj.replies.model.Reply
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.OneToMany
+import jakarta.persistence.Table
 import org.hibernate.annotations.CreationTimestamp
 import java.time.ZonedDateTime
 
 @Entity
+@Table(name = "review")
 class TodoCard (
 
     @Id
@@ -26,7 +29,7 @@ class TodoCard (
     @Column
     val nickname: String,
 
-    @OneToMany(mappedBy = "todoCard")
+    @OneToMany(mappedBy = "todoCard", cascade = [CascadeType.ALL])
     val repiles: List<Reply> = emptyList()
 
 
