@@ -15,14 +15,14 @@ import java.lang.Exception
 class ReplyServiceImpl(
     val replyRepository: ReplyRepository,
     val todoCardRepository: TodoCardRepository,
-): ReplyService {
+) : ReplyService {
     override fun createReply(createReplyArguments: CreateReplyArguments): ReplyDto {
         val targetTodoCard = todoCardRepository.findByIdOrNull(createReplyArguments.todoCardId)
             ?: throw Exception("target todo card is not found")
 
         val reply = Reply(
             content = createReplyArguments.content,
-            authorName = createReplyArguments.authorName,
+            nickname = createReplyArguments.nickname,
             password = createReplyArguments.password,
             todoCard = targetTodoCard,
         )
@@ -37,6 +37,10 @@ class ReplyServiceImpl(
             replyRepository.findByIdOrNull(it)
         } ?: throw Exception("target reply is not found")
 
+        if(foundReply.password != updateReplyArguments.password || foundReply.nickname != updateReplyArguments.nickname) {
+            throw Exception("wrong password for reply")
+        }
+
         foundReply.changeContent(updateReplyArguments.content)
 
         replyRepository.save(foundReply)
@@ -45,8 +49,14 @@ class ReplyServiceImpl(
     }
 
     override fun deleteReply(deleteReplyArguments: DeleteReplyArguments) {
-        deleteReplyArguments.id?.let {
-            replyRepository.deleteById(it)
+        val foundReply = deleteReplyArguments.id?.let {
+            replyRepository.findByIdOrNull(it)
+        } ?: throw Exception("target reply is not found")
+
+        if (foundReply.password != deleteReplyArguments.password || foundReply.nickname != deleteReplyArguments.nickname) {
+            throw Exception("wrong password for reply")
         }
+
+        replyRepository.deleteById(deleteReplyArguments.id)
     }
 }

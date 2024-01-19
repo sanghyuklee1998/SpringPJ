@@ -11,7 +11,7 @@ class Reply(
     @Column
     var content: String,
     @Column
-    val authorName: String,
+    val nickname: String,
     @Column
     val password: String,
     @ManyToOne

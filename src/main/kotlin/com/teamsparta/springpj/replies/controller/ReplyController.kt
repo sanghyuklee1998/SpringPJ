@@ -33,6 +33,7 @@ class ReplyController(
         val arguments = UpdateReplyArguments(
             id = replyId,
             content = updateReplyArguments.content,
+            nickname = updateReplyArguments.nickname,
             password = updateReplyArguments.password,
         )
         val reply = replyService.updateReply(arguments)
@@ -49,6 +50,7 @@ class ReplyController(
     ): ResponseEntity<Unit> {
         val arguments = DeleteReplyArguments(
             id = replyId,
+            nickname = deleteReplyArguments.nickname,
             password = deleteReplyArguments.password,
         )
 
