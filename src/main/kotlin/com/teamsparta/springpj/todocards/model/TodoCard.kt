@@ -30,7 +30,7 @@ class TodoCard (
     val nickname: String,
 
     @OneToMany(mappedBy = "todoCard", cascade = [CascadeType.ALL])
-    val repiles: List<Reply> = emptyList()
+    val replies: List<Reply> = emptyList()
 
 
 ) {
